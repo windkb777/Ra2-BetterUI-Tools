@@ -4,6 +4,12 @@
 ### This SoftWare is Useing to Change Yuri's Revenge UI Panel Images.
 ### Most features still need to be improved.
 ##
+
+### 0.3 is Update! 25/10/13
+![0.3_Panels](https://img.cdn1.vip/i/68ebdeb2d66d0_1760288434.webp)
+添加了新的面板功能进去。
+0.1版本的功能以后会添加进去，整合到一起。
+
 ### 0.2 Project it's upload. 25/10/10
 0.2 Godot Project file is on the Folder,it'has problem to fix.
 ![BetterUI 0.2](https://img.cdn1.vip/i/68e8e6a57642d_1760093861.webp)
