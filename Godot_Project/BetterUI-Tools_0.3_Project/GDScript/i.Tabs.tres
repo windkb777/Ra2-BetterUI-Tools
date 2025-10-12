@@ -1,0 +1,80 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cvhtx2lc0dtyf"]
+
+[sub_resource type="FontFile" id="FontFile_234b0"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/65/0/ascent = 0.0
+cache/0/65/0/descent = 0.0
+cache/0/65/0/underline_position = 0.0
+cache/0/65/0/underline_thickness = 0.0
+cache/0/65/0/scale = 1.0
+cache/0/70/0/ascent = 0.0
+cache/0/70/0/descent = 0.0
+cache/0/70/0/underline_position = 0.0
+cache/0/70/0/underline_thickness = 0.0
+cache/0/70/0/scale = 1.0
+cache/0/75/0/ascent = 0.0
+cache/0/75/0/descent = 0.0
+cache/0/75/0/underline_position = 0.0
+cache/0/75/0/underline_thickness = 0.0
+cache/0/75/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/55/0/ascent = 0.0
+cache/0/55/0/descent = 0.0
+cache/0/55/0/underline_position = 0.0
+cache/0/55/0/underline_thickness = 0.0
+cache/0/55/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0riyd"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.9312236, 0.12692875, 0.6523776, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kohh"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kohh"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(1.92523e-07, 0.25372958, 0.6808161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kj2n"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+
+[resource]
+Label/colors/font_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+Label/font_sizes/font_size = 50
+Label/fonts/font = SubResource("FontFile_234b0")
+TabBar/constants/h_separation = 0
+TabBar/styles/tab_disabled = SubResource("StyleBoxFlat_0riyd")
+TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_6kohh")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_6kohh")
+TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_0kj2n")

@@ -1,0 +1,215 @@
+[gd_scene load_steps=5 format=3 uid="uid://lp1283jal5px"]
+
+[ext_resource type="Texture2D" uid="uid://cjyq3goq05hjv" path="res://addons/pic/i.Ref/RA2cameos.png" id="1_jtgke"]
+[ext_resource type="Texture2D" uid="uid://0q1l3jwl5r2v" path="res://addons/pic/i.Ref/YRcameos.png" id="2_bikth"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkcgg"]
+bg_color = Color(0.10476012, 9.62615e-08, 0.5904802, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62e2m"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[node name="Create_Panel" type="Window"]
+oversampling_override = 1.0
+position = Vector2i(800, 600)
+size = Vector2i(320, 200)
+wrap_controls = true
+unresizable = true
+always_on_top = true
+popup_window = true
+
+[node name="bg" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rkcgg")
+
+[node name="title" type="Label" parent="." groups=["title_label"]]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "请选择你要创建的单位类型"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -48.0
+offset_right = 150.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Grid" type="GridContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="Unit" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Unit"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 32
+
+[node name="Animal" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Animal"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+
+[node name="Tank" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Tank"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 35
+
+[node name="Plane" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Plane"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 38
+
+[node name="Ship" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Ship"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 101
+
+[node name="Building" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Building"]
+texture = ExtResource("2_bikth")
+centered = false
+hframes = 7
+vframes = 7
+frame = 8
+
+[node name="DEF" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/DEF"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 65
+
+[node name="Machine" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/Machine"]
+texture = ExtResource("2_bikth")
+centered = false
+hframes = 7
+vframes = 7
+frame = 13
+
+[node name="SuperWeapon" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/SuperWeapon"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 15
+
+[node name="FX" type="PanelContainer" parent="Margin/Grid" groups=["Buttons"]]
+clip_children = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="Label3" type="Sprite2D" parent="Margin/Grid/FX"]
+texture = ExtResource("1_jtgke")
+centered = false
+hframes = 8
+vframes = 14
+frame = 58
+
+[node name="detail" type="Label" parent="." groups=["detail_label"]]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "   创建人物角色，使用基本模板进行创建。"
+vertical_alignment = 1

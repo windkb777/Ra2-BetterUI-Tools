@@ -1,0 +1,1102 @@
+[gd_scene load_steps=27 format=3 uid="uid://8po8td202rj8"]
+
+[ext_resource type="Texture2D" uid="uid://celx0qc4y3y72" path="res://addons/pic/bg.png" id="1_ahppm"]
+[ext_resource type="Texture2D" uid="uid://cc4xrve7iowyv" path="res://addons/pic/i.cameo_bg/50_urban/city_cam_019.png" id="2_vdegy"]
+[ext_resource type="SpriteFrames" uid="uid://c84wwmuq62wb2" path="res://addons/pic/i.ant/GANT_PREVIEW.gif" id="3_k6fx3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uwhb4"]
+texture = ExtResource("1_ahppm")
+
+[sub_resource type="Theme" id="Theme_s0q6d"]
+CheckButton/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0.01866665, 0.28, 0.7176471)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhl3i"]
+bg_color = Color(0, 0, 0.9882353, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4862745, 0.9882353, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_6re4o"]
+script/source = "@tool
+extends Panel
+
+@export var cameo = \"YYPHQ\"
+@export_enum(\"X1\",\"X2\",\"X3\",\"X4\") var zoom = \"X1\"
+@export var title_on_top = false
+@export var hide_line = false
+@export var line_color : Color = Color.LAWN_GREEN
+@export_range(0,1) var title_bg_opcity
+@export_category(\"image\")
+@export var image : Texture2D
+@export var background : Texture2D
+@export var font_colors = GradientTexture2D.new()
+
+func _process(_delta):
+	Set_Cameo()
+
+func Set_Cameo():
+	var labels = [$gray/Margin/label_con/text,$gray/Margin/label_con/shadow]
+	var gradient = $gray/Margin/label_con/text/gradient
+	var con = $gray/Margin/label_con
+	var dir = [\"left\",\"top\",\"right\",\"bottom\"]
+	if hide_line:for i in dir.size():get_theme_stylebox(\"panel\")[\"border_width_%s\"%dir[i]] = 0
+	;get_theme_stylebox(\"panel\")[\"expand_margin_%s\"%dir[i]] = 0
+	else:for i in dir.size():get_theme_stylebox(\"panel\")[\"border_width_%s\"%dir[i]] = 1
+	;get_theme_stylebox(\"panel\")[\"expand_margin_%s\"%dir[i]] = 1
+	font_colors.gradient = gradient.get_theme_stylebox(\"panel\")[\"texture\"].gradient
+	$gray.get_theme_stylebox(\"panel\")[\"bg_color\"].a = 1 - title_bg_opcity
+	get_theme_stylebox(\"panel\")[\"border_color\"] = line_color
+	$bg.texture = background
+	$pic.texture = image
+	con.custom_minimum_size = gradient.size - Vector2(0,5)
+	for i in labels:i.text = self.cameo
+	font_colors.width = 6;font_colors.height = 1
+	self.scale = zoom.split(\"X\")[1].to_int() * Vector2(1,1)
+	if !title_on_top:$gray.z_index = 5
+	else:$gray.z_index = 4
+"
+
+[sub_resource type="Gradient" id="Gradient_hhl3i"]
+interpolation_color_space = 2
+colors = PackedColorArray(1, 1, 1, 1, 0.51718444, 0.5171845, 0.51718444, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cmwkq"]
+gradient = SubResource("Gradient_hhl3i")
+width = 6
+height = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ysiu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_hhl3i"]
+font_names = PackedStringArray("5x5 square", "DinkieBitmap 7pxDemo")
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="FontVariation_2ysiu"]
+base_font = SubResource("SystemFont_hhl3i")
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ysiu"]
+gradient = SubResource("Gradient_hhl3i")
+width = 1
+height = 16
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cq3ju"]
+texture = SubResource("GradientTexture2D_2ysiu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvean"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0, 0.37140185, 0.43454412, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwhb4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikom4"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0, 0.24266668, 0.52, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="FontFile" id="FontFile_234b0"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/65/0/ascent = 0.0
+cache/0/65/0/descent = 0.0
+cache/0/65/0/underline_position = 0.0
+cache/0/65/0/underline_thickness = 0.0
+cache/0/65/0/scale = 1.0
+cache/0/70/0/ascent = 0.0
+cache/0/70/0/descent = 0.0
+cache/0/70/0/underline_position = 0.0
+cache/0/70/0/underline_thickness = 0.0
+cache/0/70/0/scale = 1.0
+cache/0/75/0/ascent = 0.0
+cache/0/75/0/descent = 0.0
+cache/0/75/0/underline_position = 0.0
+cache/0/75/0/underline_thickness = 0.0
+cache/0/75/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/55/0/ascent = 0.0
+cache/0/55/0/descent = 0.0
+cache/0/55/0/underline_position = 0.0
+cache/0/55/0/underline_thickness = 0.0
+cache/0/55/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0riyd"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.9312236, 0.12692875, 0.6523776, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kohh"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kohh"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(1.92523e-07, 0.25372958, 0.6808161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kj2n"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_5j8oy"]
+Label/colors/font_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+Label/font_sizes/font_size = 50
+Label/fonts/font = SubResource("FontFile_234b0")
+TabBar/constants/h_separation = 0
+TabBar/styles/tab_disabled = SubResource("StyleBoxFlat_0riyd")
+TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_6kohh")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_6kohh")
+TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_0kj2n")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apyv2"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(7.2196127e-07, 0.26802963, 0.5182993, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwhb4"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0.215, 0.43, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmwkq"]
+
+[node name="Modifer" type="Window"]
+oversampling_override = 1.0
+position = Vector2i(1200, 440)
+size = Vector2i(640, 480)
+always_on_top = true
+force_native = true
+metadata/_edit_horizontal_guides_ = [113.0, 144.0, 486.0]
+metadata/_edit_vertical_guides_ = [376.0, 368.0, 170.0]
+
+[node name="bg" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uwhb4")
+
+[node name="bg2" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uwhb4")
+
+[node name="title" type="Label" parent="." groups=["title_label"]]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme = SubResource("Theme_s0q6d")
+text = "新建单位，编辑属性数值！"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 60
+
+[node name="Conte" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="VBOX" type="VBoxContainer" parent="Margin/Conte"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Cameo" type="HBoxContainer" parent="Margin/Conte/VBOX"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/separation = 70
+
+[node name="HBox" type="MarginContainer" parent="Margin/Conte/VBOX/Cameo"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+
+[node name="Panel" type="Panel" parent="Margin/Conte/VBOX/Cameo/HBox" groups=["Buttons"]]
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_hhl3i")
+script = SubResource("GDScript_6re4o")
+cameo = "ANT"
+zoom = "X2"
+title_on_top = true
+title_bg_opcity = 0.0
+background = ExtResource("2_vdegy")
+font_colors = SubResource("GradientTexture2D_cmwkq")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Margin/Conte/VBOX/Cameo/HBox/Panel"]
+z_index = 1
+texture_filter = 1
+position = Vector2(32, 27)
+sprite_frames = ExtResource("3_k6fx3")
+animation = &"gif"
+frame = 26
+frame_progress = 0.27531773
+
+[node name="pic" type="TextureRect" parent="Margin/Conte/VBOX/Cameo/HBox/Panel"]
+visible = false
+z_index = 1
+texture_filter = 1
+custom_minimum_size = Vector2(60, 48)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 49.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="bg" type="TextureRect" parent="Margin/Conte/VBOX/Cameo/HBox/Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_vdegy")
+
+[node name="gray" type="Panel" parent="Margin/Conte/VBOX/Cameo/HBox/Panel"]
+z_index = 4
+z_as_relative = false
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ysiu")
+
+[node name="Margin" type="MarginContainer" parent="Margin/Conte/VBOX/Cameo/HBox/Panel/gray"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="label_con" type="Control" parent="Margin/Conte/VBOX/Cameo/HBox/Panel/gray/Margin"]
+custom_minimum_size = Vector2(30, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="text" type="Label" parent="Margin/Conte/VBOX/Cameo/HBox/Panel/gray/Margin/label_con"]
+clip_children = 2
+z_index = 4
+texture_filter = 1
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 2.0
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_2ysiu")
+theme_override_font_sizes/font_size = 8
+text = "ANT"
+horizontal_alignment = 1
+
+[node name="gradient" type="Panel" parent="Margin/Conte/VBOX/Cameo/HBox/Panel/gray/Margin/label_con/text"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cq3ju")
+
+[node name="shadow" type="Label" parent="Margin/Conte/VBOX/Cameo/HBox/Panel/gray/Margin/label_con"]
+clip_children = 2
+z_index = 3
+z_as_relative = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 2.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_2ysiu")
+theme_override_font_sizes/font_size = 8
+text = "ANT"
+horizontal_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Conte/VBOX/Cameo"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Margin/Conte/VBOX/Cameo/VBox" groups=["Buttons"]]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvean")
+text = "None"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Margin/Conte/VBOX/Cameo/VBox" groups=["Buttons"]]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvean")
+text = "None"
+horizontal_alignment = 1
+
+[node name="-" type="HSeparator" parent="Margin/Conte/VBOX"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_uwhb4")
+
+[node name="Panel_1" type="PanelContainer" parent="Margin/Conte/VBOX"]
+custom_minimum_size = Vector2(200, 160)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ikom4")
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Conte/VBOX/Panel_1"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="slot_3" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_3" groups=["Buttons"]]
+editor_description = "这个代码指定该单位的生命点，当为0时，该单位破坏"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "Health/血量 : "
+
+[node name="LineEdit" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_3"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "200"
+
+[node name="slot_4" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label2" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_4" groups=["Buttons"]]
+editor_description = "这个代码指VXL单位、步兵单位的运动速度 最大值为100"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "Speed/速度 : "
+
+[node name="LineEdit2" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_4"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "8"
+
+[node name="slot_5" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label3" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_5" groups=["Buttons"]]
+editor_description = "这个代码指定该单位的大小 默认为1"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "Size/尺寸 : "
+
+[node name="LineEdit3" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_5"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "1"
+
+[node name="slot_6" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label3" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_6" groups=["Buttons"]]
+editor_description = "这个代码指定该单位的价格，每个可以建造的单位都应该设定其价格"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "Cost/花费 : "
+
+[node name="LineEdit3" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_6"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "200"
+
+[node name="slot_7" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label3" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_7" groups=["Buttons"]]
+editor_description = "这个代码指定该单位被卖掉后所得的资金
+对于步兵单位，只有通过进入苏军的“复制中心”（或同类型建筑）才能卖掉"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "Sell/回收 : "
+
+[node name="LineEdit3" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_7"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "120"
+
+[node name="slot_8" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label3" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_8" groups=["Buttons"]]
+editor_description = "这个代码指定该单位的视力范围  数值越高，该单位在探路时拨开的黑雾越大
+代码也指定了该单位发现目标的距离"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "开图视野 : "
+
+[node name="LineEdit3" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_8"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "8"
+
+[node name="slot_9" type="HBoxContainer" parent="Margin/Conte/VBOX/Panel_1/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label3" type="Label" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_9" groups=["Buttons"]]
+editor_description = "威胁值
+电脑优先攻击高威胁的,注意加载物必须为0,因为电脑不可能直接攻击加载物"
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 0
+theme = SubResource("Theme_s0q6d")
+text = "威胁值 : "
+
+[node name="LineEdit3" type="LineEdit" parent="Margin/Conte/VBOX/Panel_1/VBox/slot_9"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "2"
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Conte"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="TabBar" type="TabBar" parent="Margin/Conte/VBox" groups=["Buttons"]]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+theme = SubResource("Theme_5j8oy")
+current_tab = 0
+tab_count = 4
+tab_0/title = "轻编辑"
+tab_1/title = "改代码"
+tab_2/title = "预览区"
+tab_3/title = "导出"
+
+[node name="Panel_2" type="PanelContainer" parent="Margin/Conte/VBox"]
+custom_minimum_size = Vector2(200, 160)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_apyv2")
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Conte/VBox/Panel_2"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="slot_1" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_2/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Margin/Conte/VBox/Panel_2/VBox/slot_1" groups=["Buttons"]]
+editor_description = "这个代码指定该单位的名称Name"
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "单位名称 : "
+
+[node name="LineEdit" type="LineEdit" parent="Margin/Conte/VBox/Panel_2/VBox/slot_1"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "GANT/Giant Ant"
+
+[node name="slot_2" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_2/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Margin/Conte/VBox/Panel_2/VBox/slot_2" groups=["Buttons"]]
+editor_description = "这个代码指定该单位的图象   不设定时即和Art.ini中的名称相同
+注意：Art.ini中的单位名称应该和单位对应的素材名称相同，否则会无法显示单位的图象只会显示图标"
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "序列名 : "
+
+[node name="LineEdit" type="LineEdit" parent="Margin/Conte/VBox/Panel_2/VBox/slot_2"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "GANTSequence"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_2/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuButton2" type="CheckButton" parent="Margin/Conte/VBox/Panel_2/VBox/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "中立"
+
+[node name="MenuButton" type="CheckButton" parent="Margin/Conte/VBox/Panel_2/VBox/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "音效"
+
+[node name="MenuButton3" type="CheckButton" parent="Margin/Conte/VBox/Panel_2/VBox/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "武器"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_2/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuButton2" type="CheckButton" parent="Margin/Conte/VBox/Panel_2/VBox/HBoxContainer2" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "前提"
+
+[node name="MenuButton" type="CheckButton" parent="Margin/Conte/VBox/Panel_2/VBox/HBoxContainer2" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "开局"
+
+[node name="MenuButton3" type="CheckButton" parent="Margin/Conte/VBox/Panel_2/VBox/HBoxContainer2" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "待定"
+
+[node name="Panel_3" type="PanelContainer" parent="Margin/Conte/VBox"]
+z_index = 1
+custom_minimum_size = Vector2(39.245, 72.125)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwhb4")
+
+[node name="base2" type="VBoxContainer" parent="Margin/Conte/VBox/Panel_3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_3/base2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuButton" type="CheckButton" parent="Margin/Conte/VBox/Panel_3/base2/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "可选择"
+
+[node name="MenuButton3" type="CheckButton" parent="Margin/Conte/VBox/Panel_3/base2/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "可入驻"
+
+[node name="MenuButton2" type="CheckButton" parent="Margin/Conte/VBox/Panel_3/base2/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "可染色"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_3/base2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuButton4" type="CheckButton" parent="Margin/Conte/VBox/Panel_3/base2/HBoxContainer2" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "可部署"
+
+[node name="MenuButton" type="CheckButton" parent="Margin/Conte/VBox/Panel_3/base2/HBoxContainer2" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "可碾压"
+
+[node name="MenuButton2" type="CheckButton" parent="Margin/Conte/VBox/Panel_3/base2/HBoxContainer2" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "可降落"
+
+[node name="Panel_4" type="PanelContainer" parent="Margin/Conte/VBox"]
+z_index = 1
+custom_minimum_size = Vector2(39.245, 72.125)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwhb4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Conte/VBox/Panel_4"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VSeparator" type="VSeparator" parent="Margin/Conte/VBox/Panel_4/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cmwkq")
+
+[node name="Label3" type="Label" parent="Margin/Conte/VBox/Panel_4/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "进入载具
+图标色 : "
+
+[node name="VSeparator3" type="VSeparator" parent="Margin/Conte/VBox/Panel_4/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cmwkq")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Margin/Conte/VBox/Panel_4/HBoxContainer"]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+color = Color(0, 0, 1, 1)
+
+[node name="VSeparator2" type="VSeparator" parent="Margin/Conte/VBox/Panel_4/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cmwkq")
+
+[node name="Label4" type="Label" parent="Margin/Conte/VBox/Panel_4/HBoxContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme = SubResource("Theme_s0q6d")
+text = "占领建筑
+图标色 : "
+
+[node name="VSeparator4" type="VSeparator" parent="Margin/Conte/VBox/Panel_4/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cmwkq")
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="Margin/Conte/VBox/Panel_4/HBoxContainer"]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+color = Color(0, 0, 1, 1)
+
+[node name="detail" type="Label" parent="." groups=["detail_label"]]
+editor_description = "这个代码指定该单位被卖掉后所得的资金
+对于步兵单位，只有通过进入苏军的“复制中心”（或同类型建筑）才能卖掉"
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -47.0
+offset_right = -8.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_s0q6d")
+theme_override_font_sizes/font_size = 14
+text = "   请为该单位添加基本属性。"
+vertical_alignment = 1
+
+[node name="Panel" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 289.0
+offset_top = -2.0
+offset_right = 646.0
+offset_bottom = 492.0
+
+[node name="base" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/base"]
+layout_mode = 2
+
+[node name="MenuButton4" type="OptionButton" parent="Panel/base/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "exp"
+popup/item_0/id = 0
+
+[node name="MenuButton5" type="OptionButton" parent="Panel/base/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "能力"
+popup/item_0/id = 0
+
+[node name="MenuButton6" type="OptionButton" parent="Panel/base/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "⋙能力"
+popup/item_0/id = 0
+
+[node name="weapon" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/weapon"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "武器"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/weapon"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/weapon"]
+layout_mode = 2
+
+[node name="MenuButton" type="OptionButton" parent="Panel/weapon/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "主武器"
+popup/item_0/id = 0
+
+[node name="MenuButton2" type="OptionButton" parent="Panel/weapon/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "副武器"
+popup/item_0/id = 0
+
+[node name="MenuButton3" type="OptionButton" parent="Panel/weapon/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "⋙主武"
+popup/item_0/id = 0
+
+[node name="MenuButton4" type="OptionButton" parent="Panel/weapon/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "⋙副武器"
+popup/item_0/id = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/weapon"]
+layout_mode = 2
+
+[node name="MenuButton" type="OptionButton" parent="Panel/weapon/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "入驻武器"
+popup/item_0/id = 0
+
+[node name="MenuButton2" type="OptionButton" parent="Panel/weapon/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "主/副 入驻武器选择"
+popup/item_0/id = 0
+
+[node name="MenuButton3" type="OptionButton" parent="Panel/weapon/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "IFV"
+popup/item_0/id = 0
+
+[node name="voice" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/voice"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "音效"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/voice"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/voice"]
+layout_mode = 2
+
+[node name="MenuButton" type="OptionButton" parent="Panel/voice/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "选择"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton2" type="OptionButton" parent="Panel/voice/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "移动"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton3" type="OptionButton" parent="Panel/voice/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "攻击"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton4" type="OptionButton" parent="Panel/voice/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "特殊"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton6" type="OptionButton" parent="Panel/voice/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "被碾压"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/voice"]
+layout_mode = 2
+
+[node name="MenuButton8" type="OptionButton" parent="Panel/voice/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "环境"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton3" type="OptionButton" parent="Panel/voice/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "恐惧"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton5" type="OptionButton" parent="Panel/voice/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "死亡"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="MenuButton6" type="OptionButton" parent="Panel/voice/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "部署"
+popup/item_0/id = 0
+
+[node name="MenuButton7" type="OptionButton" parent="Panel/voice/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "反部署"
+popup/item_0/id = 0
+popup/item_1/id = 1
