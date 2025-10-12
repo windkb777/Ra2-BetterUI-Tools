@@ -1,6 +1,9 @@
 # Ra2-BetterUI
 ![Ra2UI-Tools](https://img.cdn1.vip/i/68e8eb1f92c78_1760095007.png)
 
+### Ra2-BetterUI 是一款Diy软件工具，该工具可以美观且便捷的修改或新增Ra2里面的界面/单位
+### 目前还有许多功能需要制作，这段时间要考虑打工挣钱了，更新速度会比较慢一些，请见谅.
+
 ### This SoftWare is Useing to Change Yuri's Revenge UI Panel Images.
 ### Most features still need to be improved.
 ##
